@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  amzn-linux-2:
+    build: .
+    image: httpd-php-fmp-docker-compose-template_amzn-linux-2:0.1-2
+    container_name: amzn-linux-2
+    privileged: true
+    restart: always
+    ports:
+      - "8980:80"
+    volumes:
+      - type: bind
+        source: ./html
+        target: /var/www/html
+      - type: bind
+        source: ./share
+        target: /share
+      - type: bind
+        source: ~/.aws
+        target: /home/ec2-user/.aws
