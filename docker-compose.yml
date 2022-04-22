@@ -3,7 +3,7 @@ version: "3.7"
 services:
   amzn-linux-2:
     build: .
-    image: httpd-php-fmp-docker-compose-template_amzn-linux-2:0.1-2
+    image: httpd-php-fpm-docker-amzn-linux-2:0.1-6
     container_name: amzn-linux-2
     privileged: true
     restart: always
@@ -14,8 +14,14 @@ services:
         source: ./html
         target: /var/www/html
       - type: bind
+        source: ./log/httpd
+        target: /var/log/httpd
+      - type: bind
         source: ./share
         target: /share
       - type: bind
         source: ~/.aws
         target: /home/ec2-user/.aws
+      - type: bind
+        source: ./conf_files/www.conf
+        target: /etc/php-fpm.d/www.conf

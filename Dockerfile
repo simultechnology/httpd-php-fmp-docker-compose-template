@@ -22,8 +22,15 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
 # create user
 RUN useradd "ec2-user" && echo "ec2-user ALL=NOPASSWD: ALL" >> /etc/sudoers
 
-RUN amazon-linux-extras install php7.4 -y
+RUN amazon-linux-extras enable php7.4
+
+RUN yum install php-cli php-pdo php-fpm php-mysqlnd -y
+
+RUN systemctl enable httpd \
+    && systemctl enable httpd php-fpm.service
+
 
 EXPOSE 80
 # init
-CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+# CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+ENTRYPOINT ["/sbin/init"]
