@@ -3,16 +3,15 @@ version: "3.7"
 services:
   amzn-linux-2:
     build: .
-    image: httpd-php-fpm-docker-amzn-linux-2:0.1-6
+    image: httpd-php-fpm-docker-amzn-linux-2:0.1-7
     container_name: amzn-linux-2
     privileged: true
     restart: always
     ports:
       - "8980:80"
     volumes:
-      - type: bind
-        source: ./html
-        target: /var/www/html
+      - ./conf_files/www.conf:/etc/php-fpm.d/www.conf
+      - ./html:/var/www/html
       - type: bind
         source: ./log/httpd
         target: /var/log/httpd
@@ -22,6 +21,3 @@ services:
       - type: bind
         source: ~/.aws
         target: /home/ec2-user/.aws
-      - type: bind
-        source: ./conf_files/www.conf
-        target: /etc/php-fpm.d/www.conf
