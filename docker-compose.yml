@@ -11,6 +11,7 @@ services:
       - "8980:80"
     volumes:
       - ./conf_files/www.conf:/etc/php-fpm.d/www.conf
+      - ./conf_files/php.ini:/etc/php.ini
       - ./html:/var/www/html
       - type: bind
         source: ./log/httpd
