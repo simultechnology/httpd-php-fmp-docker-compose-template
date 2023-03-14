@@ -4,11 +4,11 @@ services:
   amzn-linux-2:
     build: .
     image: httpd-php-fpm-docker-amzn-linux-2:0.1-7
-    container_name: amzn-linux-2
+    container_name: my-amzn-linux-2
     privileged: true
     restart: always
     ports:
-      - "8980:80"
+      - "58880:80"
     volumes:
       - ./conf_files/www.conf:/etc/php-fpm.d/www.conf
       - ./conf_files/php.ini:/etc/php.ini
