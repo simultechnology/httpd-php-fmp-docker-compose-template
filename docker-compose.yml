@@ -6,7 +6,7 @@ services:
     image: httpd-php-fpm-docker-amzn-linux-2:0.1-7
     container_name: my-amzn-linux-2
     privileged: true
-    restart: always
+    restart: no
     ports:
       - "58880:80"
     volumes:
